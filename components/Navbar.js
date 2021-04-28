@@ -10,10 +10,8 @@ const NavbarHeader = () => {
       <Navbar.Brand href="/">K9 Dashboard</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link href="/">Főoldal</Nav.Link>
-        {session ? <Nav.Link href="/tawhoo">Tawhoo</Nav.Link> : null}
-        {session && session.user.roles === "tawhoo_mod" ? (
-          <Nav.Link href="/tawhooeditor">Tawhoo Editor</Nav.Link>
-        ) : null}
+        <Nav.Link href="/tawhoo">Tawhoo</Nav.Link>
+        <Nav.Link href="/tawhooeditor">Tawhoo Editor</Nav.Link>
       </Nav>
       <Form inline>
         {!session && (
