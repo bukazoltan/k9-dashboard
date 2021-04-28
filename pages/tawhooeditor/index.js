@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
+import { useCurrentPage } from "../../utils/currentPage";
+
 import Fuse from "fuse.js";
+import sortArray from "sort-array";
 
 import Cards from "./../../components/TawhooEditor/Cards";
 import Search from "./../../components/TawhooEditor/Search";
+import Order from "./../../components/TawhooEditor/Order";
 import Layout from "./../../components/Layout";
 
 import { Button } from "react-bootstrap";
@@ -11,6 +15,7 @@ export default function TawhooEditor() {
   const [session, loading] = useSession();
   const [content, setContent] = useState();
   const [filteredResults, setFilteredResults] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +59,28 @@ export default function TawhooEditor() {
     }
 
     if (pattern.length === 0) setFilteredResults(content);
+    setCurrentPage(15);
   };
+
+  const orderTawhoos = (mode) =>
+    ({
+      abcAsc: () => {
+        let sorted = sortArray(filteredResults, {
+          by: "wordToGuess",
+          order: "asc",
+        });
+        setFilteredResults(sorted);
+        console.log(sorted);
+      },
+      abcDesc: () => {
+        let sorted = sortArray(filteredResults, {
+          by: "wordToGuess",
+          order: "desc",
+        });
+        setFilteredResults(sorted);
+        console.log(sorted);
+      },
+    }[mode]);
 
   if (!session) {
     return <Layout>Jelentkezz be az oldal eléréséhez!</Layout>;

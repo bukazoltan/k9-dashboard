@@ -4,12 +4,16 @@ import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 
 const NavbarHeader = () => {
   const [session, loading] = useSession();
+  console.log(session);
   return (
     <Navbar bg="primary" variant="dark">
       <Navbar.Brand href="/">K9 Dashboard</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link href="/">Főoldal</Nav.Link>
-        <Nav.Link href="/tawhooeditor">Tawhoo Editor</Nav.Link>
+        {session ? <Nav.Link href="/tawhoo">Tawhoo</Nav.Link> : null}
+        {session && session.user.roles === "tawhoo_mod" ? (
+          <Nav.Link href="/tawhooeditor">Tawhoo Editor</Nav.Link>
+        ) : null}
       </Nav>
       <Form inline>
         {!session && (
