@@ -43,6 +43,7 @@ const handler = nc()
       wordToGuess: body.wordToGuess,
       imgURL: body.imgURL,
       called: body.called,
+      tags: body.tags,
     };
     const hasRight = await checkRightsAPI(req, "tawhoo_mod");
     if (hasRight) {

@@ -1,5 +1,10 @@
+import { useState, useEffect } from "react";
 import { Form, Image, Button, Col } from "react-bootstrap";
 import { confirmAlert } from "react-confirm-alert"; // Import
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
+const animatedComponents = makeAnimated();
+
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 const TawhooEditorForm = ({
@@ -9,6 +14,8 @@ const TawhooEditorForm = ({
   deleteTawhoo,
   deleteMode,
   error,
+  options,
+  tagsValue,
 }) => {
   const deleteWithConfirmation = () => {
     confirmAlert({
@@ -60,6 +67,24 @@ const TawhooEditorForm = ({
           onChange={updateHandler}
           isInvalid={!!error?.imgURL}
         />
+        <Form.Control.Feedback type="invalid">
+          {error ? error.imgURL : ""}
+        </Form.Control.Feedback>
+      </Form.Group>
+      <Form.Group controlId="tawhooTags">
+        <Form.Label>Kategória:</Form.Label>
+        <Select
+          closeMenuOnSelect={false}
+          components={animatedComponents}
+          isMulti
+          options={options}
+          onChange={updateHandler}
+          value={tagsValue}
+          instanceId="tawhooTags"
+        />
+        <Form.Control.Feedback type="invalid">
+          {error ? error.tags : ""}
+        </Form.Control.Feedback>
         <Form.Control.Feedback type="invalid">
           {error ? error.imgURL : ""}
         </Form.Control.Feedback>

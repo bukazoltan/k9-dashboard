@@ -12,10 +12,12 @@ const constraints = {
     },
   },
   imgURL: { url: { message: "A kép nem igazi URL." } },
+  tags: {
+    presence: { allowEmpty: false, message: "Nem adtál meg egy taget sem!" },
+  },
 };
 
 const validateTawhoo = (tawhoo) => {
-  console.log(tawhoo);
   return validate(tawhoo, constraints, {
     fullMessages: false,
   });
