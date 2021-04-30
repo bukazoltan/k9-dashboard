@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Layout from "../../../components/Layout";
 import TawhooEditForm from "../../../components/TawhooEditor/TawhooEditorForm";
+import options from "../../../utils/tags";
 
 import { useState } from "react";
 import { useCurrentPage, useLastPage } from "../../../utils/currentPage";
@@ -24,17 +25,6 @@ const NewTawhoo = () => {
   const [error, setError] = useState(null);
   const [tagsValue, setTagsValue] = useState([]);
   const router = useRouter();
-
-  const options = [
-    { value: "newwho", label: "New Who" },
-    { value: "classic", label: "Classic Who" },
-    { value: "general", label: "Általános" },
-    { value: "bigfinish", label: "Big Finish" },
-    { value: "nine", label: "Kilencedik Doktor" },
-    { value: "ten", label: "Tizedik Doktor" },
-    { value: "eleven", label: "Tizenegyedik Doktor" },
-    { value: "twelve", label: "Tizenkettedik Doktor" },
-  ];
 
   const createTawhoo = (e) => {
     let updatedTawhoo = { ...tawhoo };

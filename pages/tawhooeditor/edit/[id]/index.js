@@ -4,6 +4,7 @@ import { useSession } from "next-auth/client";
 import axios from "axios";
 import Layout from "../../../../components/Layout";
 import TawhooEditForm from "../../../../components/TawhooEditor/TawhooEditorForm";
+import options from "../../../../utils/tags";
 
 const TawhooEdit = () => {
   const router = useRouter();
@@ -12,17 +13,6 @@ const TawhooEdit = () => {
   const [session, loading] = useSession();
   const [tawhoo, setTawhoo] = useState();
   const [tagsValue, setTagsValue] = useState([]);
-
-  let options = [
-    { value: "newwho", label: "New Who" },
-    { value: "classic", label: "Classic Who" },
-    { value: "general", label: "Általános" },
-    { value: "bigfinish", label: "Big Finish" },
-    { value: "nine", label: "Kilencedik Doktor" },
-    { value: "ten", label: "Tizedik Doktor" },
-    { value: "eleven", label: "Tizenegyedik Doktor" },
-    { value: "twelve", label: "Tizenkettedik Doktor" },
-  ];
 
   const updateTawhoo = (e) => {
     let updatedTawhoo = { ...tawhoo };
