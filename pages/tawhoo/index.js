@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
+import _ from "lodash";
 import axios from "axios";
 
 import Layout from "../../components/Layout";
 
 const Tawhoo = () => {
-  const [tawhoo, setTawhoo] = useState(null);
+  const [tawhoos, setTawhoos] = useState(null);
+  const [pickedTawhoo, setPickedTawhoo] = useState(null);
 
   const loadTawhoo = async () => {
-    let randomTawhoo = await axios.get("/api/tawhoo/random");
-    setTawhoo(randomTawhoo.data.content);
+    let randomTawhoo = await axios.get("/api/tawhoo/");
+    let tawhooArray = randomTawhoo.data.content;
+    setTawhoos(tawhooArray);
+    setPickedTawhoo(_.sample(tawhooArray));
+  };
+
+  const pickRandomTawhoo = () => {
+    setPickedTawhoo(_.sample(tawhoos));
   };
 
   useEffect(async () => {
@@ -17,17 +25,17 @@ const Tawhoo = () => {
 
   return (
     <Layout>
-      {tawhoo ? (
+      {pickedTawhoo ? (
         <div>
-          <h2>{tawhoo.wordToGuess}</h2>
-          <p>{tawhoo.taboos.join(", ")}</p>
-          <img width={350} src={tawhoo.imgURL} />
+          <h2>{pickedTawhoo.wordToGuess}</h2>
+          <p>{pickedTawhoo.taboos.join(", ")}</p>
+          <img width={350} src={pickedTawhoo.imgURL} />
           <div>
-            <button onClick={loadTawhoo}>Újat kérek!</button>
+            <button onClick={pickRandomTawhoo}>Újat kérek!</button>
           </div>
         </div>
       ) : (
-        "Loading"
+        "Töltés..."
       )}
     </Layout>
   );
