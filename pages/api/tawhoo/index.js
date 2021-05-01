@@ -4,15 +4,9 @@ import { checkRightsAPI } from "../../../utils/checkRights";
 
 const handler = nc()
   .get(async (req, res) => {
-    const hasRight = await checkRightsAPI(req, "tawhoo_mod");
-    if (hasRight) {
-      const { db } = await connectToDatabase();
-      const tawhoos = await db.collection("tawhoos").find({}).toArray();
-      res.json({ content: tawhoos });
-    } else {
-      res.json({ error: "unauthorized" });
-      res.status(401);
-    }
+    const { db } = await connectToDatabase();
+    const tawhoos = await db.collection("tawhoos").find({}).toArray();
+    res.json({ content: tawhoos });
     res.end();
   })
   .post(async (req, res) => {
