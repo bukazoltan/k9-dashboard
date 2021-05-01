@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import _ from "lodash";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 
 import Layout from "../../components/Layout";
 
@@ -28,7 +29,7 @@ const Tawhoo = () => {
       {pickedTawhoo ? (
         <div>
           <div>
-            <button onClick={pickRandomTawhoo}>Újat kérek!</button>
+            <Button onClick={pickRandomTawhoo}>Újat kérek!</Button>
           </div>
           <h2>{pickedTawhoo.wordToGuess}</h2>
           <p>{pickedTawhoo.taboos.join(", ")}</p>

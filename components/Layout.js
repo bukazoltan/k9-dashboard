@@ -14,7 +14,6 @@ export default function Layout({ children, title }) {
       <Container>
         <main>{children}</main>
       </Container>
-      <footer>2021</footer>
     </>
   );
 }
