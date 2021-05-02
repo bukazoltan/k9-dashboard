@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import _ from "lodash";
 import axios from "axios";
-import { Button } from "react-bootstrap";
+import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 import Layout from "../../components/Layout";
 
@@ -27,14 +27,25 @@ const Tawhoo = () => {
   return (
     <Layout>
       {pickedTawhoo ? (
-        <div>
-          <div>
-            <Button onClick={pickRandomTawhoo}>Újat kérek!</Button>
-          </div>
-          <h2>{pickedTawhoo.wordToGuess}</h2>
-          <p>{pickedTawhoo.taboos.join(", ")}</p>
-          <img width={350} src={pickedTawhoo.imgURL} />
-        </div>
+        <Card border="primary" className={"m-auto"} style={{ width: "15rem" }}>
+          <ListGroup className="list-group-flush">
+            <ListGroupItem>
+              <Button onClick={pickRandomTawhoo}>Újat kérek!</Button>
+            </ListGroupItem>
+          </ListGroup>
+          <Card.Img variant="top" src={pickedTawhoo.imgURL} />
+          <Card.Body>
+            <Card.Title>{pickedTawhoo.wordToGuess}</Card.Title>
+            <Card.Text>{pickedTawhoo.taboos.join(", ")}</Card.Text>
+          </Card.Body>
+          {pickedTawhoo.tags ? (
+            <ListGroup className="list-group-flush">
+              <ListGroupItem>
+                {"Kategóriák: " + pickedTawhoo.tags.join(", ")}
+              </ListGroupItem>
+            </ListGroup>
+          ) : null}
+        </Card>
       ) : (
         "Töltés..."
       )}

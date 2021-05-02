@@ -1,4 +1,4 @@
-const Search = ({ onChange, content }) => {
+const Search = ({ onChange }) => {
   return (
     <div>
       <input

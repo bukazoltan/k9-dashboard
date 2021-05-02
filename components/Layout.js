@@ -12,7 +12,7 @@ export default function Layout({ children, title }) {
       </Head>
       <Navbar />
       <Container>
-        <main>{children}</main>
+        <main style={{ paddingTop: "1em" }}>{children}</main>
       </Container>
     </>
   );

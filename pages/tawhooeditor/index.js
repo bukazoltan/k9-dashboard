@@ -7,10 +7,10 @@ import sortArray from "sort-array";
 
 import Cards from "./../../components/TawhooEditor/Cards";
 import Search from "./../../components/TawhooEditor/Search";
-import Order from "./../../components/TawhooEditor/Order";
+import Filter from "./../../components/TawhooEditor/Filter";
 import Layout from "./../../components/Layout";
 
-import { Button } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 export default function TawhooEditor() {
   const [session, loading] = useSession();
   const [content, setContent] = useState();
@@ -62,6 +62,13 @@ export default function TawhooEditor() {
     setCurrentPage(15);
   };
 
+  const filterByNoCategory = () => {
+    let filteredArray = filteredResults.filter(
+      (item) => !item.tags || item.tags.legnth === 0
+    );
+    setFilteredResults(filteredArray);
+  };
+
   const orderTawhoos = (mode) =>
     ({
       abcAsc: () => {
@@ -70,7 +77,6 @@ export default function TawhooEditor() {
           order: "asc",
         });
         setFilteredResults(sorted);
-        console.log(sorted);
       },
       abcDesc: () => {
         let sorted = sortArray(filteredResults, {
@@ -78,7 +84,6 @@ export default function TawhooEditor() {
           order: "desc",
         });
         setFilteredResults(sorted);
-        console.log(sorted);
       },
     }[mode]);
 
@@ -94,10 +99,24 @@ export default function TawhooEditor() {
     </Layout>
   ) : (
     <Layout title="Tawhoo szerkesztő">
-      <Button variant="primary" href="/tawhooeditor/edit/new">
-        Új Tawhoo hozzáadása
-      </Button>
-      <Search onChange={filterBySearch} />
+      <Row
+        className="controls"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          paddingBottom: "1.5rem",
+        }}
+      >
+        <Button variant="secondary" href="/tawhooeditor/edit/new">
+          Új Tawhoo hozzáadása
+        </Button>
+        <Search onChange={filterBySearch} />
+        <Filter
+          buttonText={"Kategória nélküliek"}
+          filterFunction={filterByNoCategory}
+        />
+      </Row>
+
       <Cards tawhoos={filteredResults} itemsPerPage={8} />
     </Layout>
   );
