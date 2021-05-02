@@ -36,7 +36,9 @@ const Tawhoo = () => {
           <Card.Img variant="top" src={pickedTawhoo.imgURL} />
           <Card.Body>
             <Card.Title>{pickedTawhoo.wordToGuess}</Card.Title>
-            <Card.Text>{pickedTawhoo.taboos.join(", ")}</Card.Text>
+            <Card.Text>
+              {"Tiltott szavak: " + pickedTawhoo.taboos.join(", ")}
+            </Card.Text>
           </Card.Body>
           {pickedTawhoo.tags ? (
             <ListGroup className="list-group-flush">
