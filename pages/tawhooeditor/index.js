@@ -99,25 +99,31 @@ export default function TawhooEditor() {
     </Layout>
   ) : (
     <Layout title="Tawhoo szerkesztő">
-      <Row
-        className="controls"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          paddingBottom: "1.5rem",
-        }}
-      >
-        <Button variant="secondary" href="/tawhooeditor/edit/new">
-          Új Tawhoo hozzáadása
-        </Button>
-        <Search onChange={filterBySearch} />
-        <Filter
-          buttonText={"Kategória nélküliek"}
-          filterFunction={filterByNoCategory}
-        />
-      </Row>
+      {session.user.roles === "tawhoo_mod" ? (
+        <div>
+          <Row
+            className="controls"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              paddingBottom: "1.5rem",
+            }}
+          >
+            <Button variant="secondary" href="/tawhooeditor/edit/new">
+              Új Tawhoo hozzáadása
+            </Button>
+            <Search onChange={filterBySearch} />
+            <Filter
+              buttonText={"Kategória nélküliek"}
+              filterFunction={filterByNoCategory}
+            />
+          </Row>
 
-      <Cards tawhoos={filteredResults} itemsPerPage={8} />
+          <Cards tawhoos={filteredResults} itemsPerPage={8} />
+        </div>
+      ) : (
+        "Nincs jogosultságod az oldal megtekintéséhez."
+      )}
     </Layout>
   );
 }
