@@ -4,6 +4,7 @@ import axios from "axios";
 import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 import Layout from "../../components/Layout";
+import TawhooSession from "../../components/Tawhoo/TawhooSession";
 
 const Tawhoo = () => {
   const [tawhoos, setTawhoos] = useState(null);
@@ -27,27 +28,35 @@ const Tawhoo = () => {
   return (
     <Layout>
       {pickedTawhoo ? (
-        <Card border="primary" className={"m-auto"} style={{ width: "15rem" }}>
-          <ListGroup className="list-group-flush">
-            <ListGroupItem>
-              <Button onClick={pickRandomTawhoo}>Újat kérek!</Button>
-            </ListGroupItem>
-          </ListGroup>
-          <Card.Img variant="top" src={pickedTawhoo.imgURL} />
-          <Card.Body>
-            <Card.Title>{pickedTawhoo.wordToGuess}</Card.Title>
-            <Card.Text>
-              {"Tiltott szavak: " + pickedTawhoo.taboos.join(", ")}
-            </Card.Text>
-          </Card.Body>
-          {pickedTawhoo.tags ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <Card border="primary" style={{ width: "15rem" }}>
             <ListGroup className="list-group-flush">
               <ListGroupItem>
-                {"Kategóriák: " + pickedTawhoo.tags.join(", ")}
+                <Button onClick={pickRandomTawhoo}>Újat kérek!</Button>
               </ListGroupItem>
             </ListGroup>
-          ) : null}
-        </Card>
+            <Card.Img variant="top" src={pickedTawhoo.imgURL} />
+            <Card.Body>
+              <Card.Title>{pickedTawhoo.wordToGuess}</Card.Title>
+              <Card.Text>
+                {"Tiltott szavak: " + pickedTawhoo.taboos.join(", ")}
+              </Card.Text>
+            </Card.Body>
+            {pickedTawhoo.tags ? (
+              <ListGroup className="list-group-flush">
+                <ListGroupItem>
+                  {"Kategóriák: " + pickedTawhoo.tags.join(", ")}
+                </ListGroupItem>
+              </ListGroup>
+            ) : null}
+          </Card>
+          <TawhooSession />
+        </div>
       ) : (
         "Töltés..."
       )}
