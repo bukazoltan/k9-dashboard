@@ -31,7 +31,7 @@ export default function TawhooEditor() {
       }
     };
     fetchData();
-  }, [session]);
+  }, []);
 
   const filterBySearch = (e) => {
     let pattern = e.target.value;
