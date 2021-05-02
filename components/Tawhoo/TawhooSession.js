@@ -60,7 +60,7 @@ const TawhooSession = () => {
   };
 
   return (
-    <div style={{ width: "15rem" }}>
+    <div style={{ width: "17rem" }}>
       {!tSession ? (
         "Jelenleg nem fut egy tawhoo session sem!"
       ) : (
