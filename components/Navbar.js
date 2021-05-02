@@ -24,10 +24,19 @@ const NavbarHeader = () => {
           )}
           {session && (
             <>
-              <Nav.Item>Üdvözlet, {session.user.name}!</Nav.Item>
-              <img src={session.user.image} width={20} height={20} />
+              <Nav.Item style={{ color: "white" }}>
+                Üdvözlet, {session.user.name}!
+              </Nav.Item>
+              <img
+                style={{ margin: "10px" }}
+                src={session.user.image}
+                width={20}
+                height={20}
+              />
               <div>
-                <Button onClick={() => signOut()}>Kijelentkezés</Button>
+                <Button variant="warning" onClick={() => signOut()}>
+                  Kijelentkezés
+                </Button>
               </div>
             </>
           )}
