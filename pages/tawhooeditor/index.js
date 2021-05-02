@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
 import { useCurrentPage } from "../../utils/currentPage";
+import useLocalStorageState from "use-local-storage-state";
 
 import Fuse from "fuse.js";
 import sortArray from "sort-array";
@@ -14,7 +15,10 @@ import { Button, Row } from "react-bootstrap";
 export default function TawhooEditor() {
   const [session, loading] = useSession();
   const [content, setContent] = useState();
-  const [filteredResults, setFilteredResults] = useState(null);
+  const [filteredResults, setFilteredResults] = useLocalStorageState(
+    "filteredResults",
+    null
+  );
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
