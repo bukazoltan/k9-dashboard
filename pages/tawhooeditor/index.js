@@ -9,6 +9,7 @@ import sortArray from "sort-array";
 import Cards from "./../../components/TawhooEditor/Cards";
 import Search from "./../../components/TawhooEditor/Search";
 import Filter from "./../../components/TawhooEditor/Filter";
+import TawhooStats from "./../../components/TawhooEditor/TawhooStats";
 import Layout from "./../../components/Layout";
 
 import { Button, Row } from "react-bootstrap";
@@ -105,6 +106,7 @@ export default function TawhooEditor() {
     <Layout title="Tawhoo szerkesztő">
       {session.user.roles === "tawhoo_mod" ? (
         <div>
+          <TawhooStats tawhoos={content} />
           <Row
             className="controls"
             style={{

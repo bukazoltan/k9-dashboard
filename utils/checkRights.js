@@ -15,7 +15,6 @@ const checkRightsClient = (WrappedComponent, right) => {
       }
 
       if (session?.user?.roles !== right) {
-        console.log(session.user);
         return null;
       }
       return <WrappedComponent {...props} />;
