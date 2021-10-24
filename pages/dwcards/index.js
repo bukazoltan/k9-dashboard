@@ -1,15 +1,13 @@
-import { useState, useEffect } from "react";
-import { useSession } from "next-auth/client";
-import useLocalStorageState from "use-local-storage-state";
-
-import Fuse from "fuse.js";
-
 import CardDisplay from "./../../components/CardDisplay";
 import TawhooStats from "./../../components/TawhooEditor/TawhooStats";
+import DWCard from "./../../components/DWCardEditor/DWCard";
 import Layout from "./../../components/Layout";
-import TawhooCard from "./../../components/TawhooEditor/TawhooCard";
+import { useState, useEffect } from "react";
+import { useSession } from "next-auth/client";
 
-export default function TawhooEditor() {
+import useLocalStorageState from "use-local-storage-state";
+
+const Dwcards = () => {
   const [session, loading] = useSession();
   const [content, setContent] = useState();
   const [filteredResults, setFilteredResults] = useLocalStorageState(
@@ -19,7 +17,7 @@ export default function TawhooEditor() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("/api/tawhoo");
+      const res = await fetch("/api/dwcards");
       const json = await res.json();
       if (json.content) {
         setContent(json.content);
@@ -77,20 +75,15 @@ export default function TawhooEditor() {
         : "Nincs jogosultságod az oldal megtekintéséhez."}
     </Layout>
   ) : (
-    <Layout title="Tawhoo szerkesztő">
-      {session.user.roles === "tawhoo_mod" ? (
-        <div>
-          <TawhooStats tawhoos={content} />
-          <CardDisplay
-            filteredResults={filteredResults}
-            filterByNoCategory={filterByNoCategory}
-            filterBySearch={filterBySearch}
-            cardType={TawhooCard}
-          />
-        </div>
-      ) : (
-        "Nincs jogosultságod az oldal megtekintéséhez."
-      )}
+    <Layout>
+      <CardDisplay
+        filteredResults={filteredResults}
+        filterByNoCategory={filterByNoCategory}
+        filterBySearch={filterBySearch}
+        CardType={DWCard}
+      />
     </Layout>
   );
-}
+};
+
+export default Dwcards;

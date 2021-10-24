@@ -16,6 +16,7 @@ const handler = nc()
       ongoing: body.ongoing,
       date: new Date(),
       ongoing: true,
+      tags: body.tags || [],
     };
     const hasRight = await checkRightsAPI(req, "tawhoo_mod");
     if (hasRight) {
