@@ -7,7 +7,6 @@ import Layout from "../../../components/Layout";
 const TawhooSession = () => {
   const [tSession, setTSession] = useState(null);
   const [session, setSession] = useSession();
-  const [cardSet, cardSet] = useState(null);
 
   const getSessionData = async () => {
     try {
