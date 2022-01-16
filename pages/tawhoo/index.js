@@ -27,7 +27,10 @@ const Tawhoo = () => {
       (s) => s.ongoing === true
     );
     setSession(activeSessions);
-    if (activeSessions[0]?.cardSet) {
+    if (
+      activeSessions[0]?.cardSet &&
+      activeSessions[0]?.cardSet != "no_filter"
+    ) {
       let setData = await axios.get(
         `/api/tawhoo/cardset/${activeSessions[0]?.cardSet}`
       );
@@ -41,7 +44,7 @@ const Tawhoo = () => {
 
     let result = await axios.get("/api/tawhoo/");
     let allTawhoo = result.data.content;
-    if (session.length == 0) {
+    if (session.length == 0 || !cardSet) {
       setTawhoos(allTawhoo);
       setPickedTawhoo(_.sample(allTawhoo));
     } else {
