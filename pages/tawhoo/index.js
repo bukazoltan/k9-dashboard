@@ -79,6 +79,7 @@ const Tawhoo = () => {
           style={{
             display: "flex",
             justifyContent: "space-evenly",
+            flexWrap: "wrap",
           }}
         >
           <Card border="primary" style={{ width: "15rem" }}>
