@@ -4,6 +4,7 @@ export default [
   { value: "general", label: "Általános" },
   { value: "torchwood", label: "Torchwood" },
   { value: "bigfinish", label: "Big Finish" },
+  { value: "dwhaudio", label: "DWH Audio" },
   { value: "one", label: "Első Doktor" },
   { value: "two", label: "Második Doktor" },
   { value: "three", label: "Harmadik Doktor" },
