@@ -19,4 +19,6 @@ export default [
   { value: "eleven", label: "Tizenegyedik Doktor" },
   { value: "twelve", label: "Tizenkettedik Doktor" },
   { value: "thirteen", label: "Tizenharmadik Doktor" },
+  { value: "fourteen", label: "Tizennegyedik Doktor" },
+  { value: "fifteen", label: "Tizenötödik Doktor" }
 ];
